@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")  // Here goes our database Url from Supbabase.
+}
+
+
+// Our Defereent Database structures can be added below here
+
+// User schema
+model User {
+  id String @id 
+  name String
+
+  // The rest of the fields can be added below here
+}
+
+// AiTools database structure can be added below here
+model AItools {
+  id String @id @unique
+
+  // The rest of the fields can be added below here
+}
+
+
+// Follow the above flow to create the database structure for the the rest and i will model the relationships
