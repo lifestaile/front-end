@@ -19,17 +19,87 @@ datasource db {
 // User schema
 model User {
   id String @id 
-  name String
+  username String
+  email String @unique
+  password String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+  ai_tools AItools[] // a user can have many ai tools
+  search_logs SearchLogs[] // a user can have many search logs
+  preference UserPreference[]
+  reviews Review[] // a user can have many reviews
 
-  // The rest of the fields can be added below here
 }
 
 // AiTools database structure can be added below here
 model AItools {
   id String @id @unique
+  name String
+  description String
+  url String 
+  category_id String
+  user_id String
+  added_by User @relation(fields: [user_id], references: [id]) // a tool can be added by one user
+  review Review[] // a tool can have many review
+  catergory_id String
+  tool_category Category @relation(fields: [category_id], references: [category_id]) // a tool can have one category
+  tags ToolTag[] // a tool can have many tags
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+}
 
-  // The rest of the fields can be added below here
+// Categorical data structure can be added below
+model Category {
+  category_id String @id @unique
+  name String 
+  ai_tool AItools[] // a category can belong to many aitool
+  user_preferences UserPreference[] // a user can prefer many categories
+}
+
+// Review data structure can be added below
+model Review {
+  id String @id @unique
+  tool_id String
+  user_id String
+  review_by User @relation(fields: [user_id], references: [id]) // a review can belong to one user
+  rating Int @default(0)
+  comment String
+  ai_tool_id String
+  review_for AItools @relation(fields: [ai_tool_id], references: [id]) // a review can belong to one ai tool
+  created_at DateTime @default(now())
+}
+
+model Tags {
+  id String @id @unique
+  name String
+
+  tool_tag_id String
+  tool ToolTag @relation(fields: [tool_tag_id], references: [id]) // a tag can belong to one
+}
+
+model ToolTag {
+  id String @id @unique
+  tool_id String
+  for_tool AItools @relation(fields: [tool_id], references: [id])
+  tag Tags[] // a tool can have many tags
+  tag_id String
+}
+
+model UserPreference {
+  id String @id @unique
+  category_id String
+  for_category Category @relation(fields: [category_id], references: [category_id]) // user preferred categpry Note: a user can have many preffered categpries
+  user_id String
+  for_user User @relation(fields: [user_id], references: [id]) // a user can have very many prefference
 }
 
 
-// Follow the above flow to create the database structure for the the rest and i will model the relationships
+model SearchLogs {
+  search_id  String @id  @unique
+  user_id String
+  searched_by_user User @relation(fields: [user_id], references: [id]) // user who serached
+  search_query String
+  search_results Json
+  search_date DateTime @default(now())
+}
+
