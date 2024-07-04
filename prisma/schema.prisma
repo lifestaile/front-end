@@ -85,7 +85,6 @@ model ToolTag {
   tag_id String
 }
 
-
 model UserPreference {
   id String @id @unique
   category_id String
