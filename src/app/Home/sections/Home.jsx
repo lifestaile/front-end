@@ -19,7 +19,7 @@ const HomePage = () => {
       <FeaturedApps />
 
       {/* Containing basic information like privacy policy social links etc */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
