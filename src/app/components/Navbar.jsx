@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import logoImage from "./../../../../assets/appwhite_space_logo.png";
+import logoImage from "../../../assets/appwhite_space_logo.png";
 
 // Social lOGIN
-import logo from "./../../../../assets/lifestai-logo.png";
-import google from "./../../../../assets/google.png";
-import linkedin from "./../../../../assets/linkedin.png";
-import email from "./../../../../assets/email.png";
+import logo from "./../../../assets/lifestai-logo.png";
+import google from "./../../../assets/google.png";
+import linkedin from "./../../../assets/linkedin.png";
+import email from "./../../../assets/email.png";
 
 const IconButton = ({ src, label }) => {
   return (
@@ -42,9 +42,9 @@ const Navbar = () => {
         </div>
         <nav>
           <ul className="flex gap-6 items-center justify-between">
-            <lLink href="/">
+            <Link href="/">
               <p>Home</p>
-            </lLink>
+            </Link>
             <Link href="/ai-news">
               <p>Ai News</p>
             </Link>
