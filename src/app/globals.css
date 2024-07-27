@@ -74,3 +74,13 @@
       @apply bg-background text-foreground;
     }
   }
+
+  .rating {
+    font-size: 1.25rem;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+  
+  .glow {
+    text-shadow: 0 0 20px rgba(255, 255, 255, .8);
+  }

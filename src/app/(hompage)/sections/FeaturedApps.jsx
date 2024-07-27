@@ -1,81 +1,62 @@
 "use client";
 
 import React from "react";
+import ToolCard from "../../../components/ui/ToolCard.jsx";
+import data from "../../../../public/data.json";
+import Link from "next/link";
 
 const FeaturedApps = () => {
-  const [userInput, setUserInput] = React.useState("stock analysis");
-  const [tools, setTools] = React.useState([
-    {
-      id: 23051,
-      name: "Punchline Painter",
-      slug: "punchline-painter",
-      url: "https://chat.openai.com/g/g-MVqqkmMIl-p-u-n-c-h-l-i-n-e-p-a-i-n-t-e-r",
-      icon_src:
-        "https://media.theresanaiforthat.com/icons/punchline-painter.png",
-      has_icon: "2",
-    },
-    {
-      id: 43790,
-      name: "TranslateI18N - A Visual Studio Extension for i18n gpt translator",
-      slug: "translatei18n-a-visual-studio-extension-for-i18n-gpt-translator",
-      url: "https://www.translatei18n.com/",
-      icon_src:
-        "https://media.theresanaiforthat.com/icons/translatei18n-a-visual-studio-extension-for-i18n-gpt-translator.svg",
-      has_icon: "1",
-    },
-    {
-      id: 23690,
-      name: "R.E.S.O.N.A.T.E. Framework for Viral Content",
-      slug: "r-e-s-o-n-a-t-e-framework-for-viral-content",
-      url: "https://chat.openai.com/g/g-NqdyH4ZE8-r-e-s-o-n-a-t-e-framework-for-viral-content",
-      icon_src:
-        "https://media.theresanaiforthat.com/icons/r-e-s-o-n-a-t-e-framework-for-viral-content.png",
-      has_icon: "2",
-    },
-    {
-      id: 1121,
-      name: "The Best Way to Start a Conversation",
-      slug: "opener",
-      url: "https://opener.chat/",
-      icon_src: "https://media.theresanaiforthat.com/icons/opener.svg",
-      has_icon: "1",
-    },
-  ]);
-
-  const fetchAiTools = (config) => {
-    fetch(`/api/search?query=${userInput}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setTools(data.data);
-      });
-  };
+  // Ensure featuredTools has a maximum of 5 items to prevent undefined tool props
+  const featuredTools = data.tools.slice(0, 5);
 
   return (
-    <div>
-      <div class="h-screen flex flex-col pb-6">
-        <div class="h-full flex flex-col justify-center">
-          <div class="container grid grid-cols-4 gap-2 mt-12">
-            {tools.map((tool) => (
-              <a href={tool.url} target="_blank" rel="noreferrer">
-                <div class="bg-white rounded-lg border p-4 flex flex-col justify-center items-center hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700">
-                  <img
-                    src={tool.icon_src}
-                    alt={tool.name}
-                    class="w-20 h-20 rounded-full"
-                  />
-                  <h3 class="mt-4 text-xl font-semibold">{tool.name}</h3>
-                  <p class="mt-4 text-gray-600 dark:text-neutral-400">
-                    {tool.slug}
-                  </p>
-                </div>
-              </a>
-            ))}
+    <section className="relative overflow-hidden py-16 bg-gradient-to-b from-[#020024] via-[#090979] to-[#00d4ff]">
+      <div className="relative z-10 max-w-7xl mx-auto px-8 ">
+          <h2 className=" inline-block align-text-bottom text-4xl text-white font:BankGothic Md BT ">
+            Featured
+          </h2>
+      </div>
+    
+        
+        <div className="grid grid-cols-6 gap-4">
+          <div className="col-start-3 col-span-2 ">
+            <div className="w-full h-[300px]">
+              <ToolCard tool={featuredTools[0]} />
+            </div>
+          </div>
+          <div className="col-span-1">
+              <ToolCard tool={featuredTools[1]} />
+          </div>
+          <div className="col-start-2 col-span-1">
+              <ToolCard tool={featuredTools[2]} />
+          </div>
+          <div className="col-start-4 col-span-1">
+              <ToolCard tool={featuredTools[3]} />
+          </div>
+        
+        <div className="flex justify-end mt-8 ">
+          <div className="flex flex-col">
+          <Link href="/more" legacyBehavior>
+            <a className="text-white font:Square721 BT text-lg flex items-center ">
+              See More 
+            </a>
+        
+          </Link>
+          <Link href="/more" legacyBehavior>
+            <a className="text-white font:Square721 BT flex items-center justify-center">
+              →
+            </a>
+        
+          </Link>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default FeaturedApps;
+
+
+
+
