@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import Navbar from "../components/Navbar";
 import Hero from "./sections/Hero";
@@ -10,6 +12,7 @@ const HomePage = () => {
       <Hero />
       {/* Featured apps basically showing newly added or popular applications  or Trending*/}
       <TrendingApps />
+
       <FeaturedApps />
       {/* Containing basic information like privacy policy social links etc */}
     </div>

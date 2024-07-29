@@ -1,12 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import ToolCard from "../../../components/ui/ToolCard.jsx";
 import data from "../../../../public/data.json";
+import { getTools } from ".././../../../toolsCall/apiTools.js";
 
 const TrendingApps = () => {
   //button to move to next and previous  
   const [currentIndex, setCurrentIndex] = useState(0);
+  
+  useEffect(() => {
+    getTools();
+  }, []);
+
   const trendingTools = data.tools; 
 
   const handlePrev = () => {

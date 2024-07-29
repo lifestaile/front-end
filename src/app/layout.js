@@ -1,3 +1,5 @@
+
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
@@ -13,10 +15,10 @@ const myFont = localFont({
   weight: "400 600 700",
 });
 
-export const metadata = {
-  title: "LifestAi",
-  description: "Your gateway to ai web applications",
-};
+//export const metadata = {
+ // title: "LifestAi",
+ // description: "Your gateway to ai web applications",
+//};
 
 export default function RootLayout({ children }) {
   return (

@@ -11,6 +11,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")  // Here goes our database Url from Supbabase.
+  directUrl         = env("DIRECT_URL")
 }
 
 
@@ -35,18 +36,25 @@ model User {
 model AItools {
   id String @id @unique
   name String
-  description String
-  url String 
-  category_id String
-  user_id String
-  added_by User @relation(fields: [user_id], references: [id]) // a tool can be added by one user
+  desc String
+  toolUrl String? 
+  category_id String?
+  category String
+  subcategory String[]
+  user_id String?
+  price String?
+  rating Int?
+  imgUrl String?
+  cardDesc String?
+  added_by User? @relation(fields: [user_id], references: [id]) // a tool can be added by one user
   review Review[] // a tool can have many review
-  catergory_id String
-  tool_category Category @relation(fields: [category_id], references: [category_id]) // a tool can have one category
+  tool_category Category? @relation(fields: [category_id], references: [category_id]) // a tool can have one category
   tags ToolTag[] // a tool can have many tags
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt()
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt()
 }
+
+
 
 // Categorical data structure can be added below
 model Category {
